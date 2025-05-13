@@ -2,7 +2,6 @@ import java.util.*;
 
 class Solution {
     public boolean areOccurrencesEqual(String s) {
-        Boolean ans = null;
         String[] charArray = s.split("");
         HashMap<String, Integer> hash = new HashMap<>();
         for (String x : charArray) {
@@ -12,16 +11,13 @@ class Solution {
                 hash.put(x, 1);
             }
         }
-        HashSet<Integer> compare = new HashSet<>();
-        for (String x : hash.keySet()) {
-            compare.add(hash.get(x));
+        Iterator<Map.Entry<String,Integer>> iterator = hash.entrySet().iterator();
+        Integer firstValue = iterator.next().getValue();
+        while(iterator.hasNext()){
+            if (!firstValue.equals(iterator.next().getValue())){
+                return false;
+            }
         }
-        if (compare.size() > 1) {
-            ans = false;
-        } else {
-            ans = true;
-        }
-
-        return ans;
+        return true;
     }
 }
