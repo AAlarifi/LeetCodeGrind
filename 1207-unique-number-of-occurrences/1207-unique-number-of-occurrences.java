@@ -8,13 +8,12 @@ class Solution {
                 hm.put(arr[i], 1);
             }
         }
-        Integer prevous = 0;
-        for (Integer x : hm.keySet()) {
-            if (hm.get(x) == prevous) {
-                return false;
-            }
-            prevous = hm.get(x);
+        // Add all occurances to a hashset. If all the occurances are unique
+        // then both the hashmap and hashset size will be the same.
+        HashSet<Integer> hs = new HashSet<>(hm.values());
+        if (hs.size() == hm.size()) {
+            return true;
         }
-        return true;
+        return false;
     }
 }
